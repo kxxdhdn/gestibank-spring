@@ -14,17 +14,21 @@
   <br />
   <br />
 
-  <h1 align="center">Les Banques</h1>
+  <h1 align="center">
+    Liste des comptes bancaires de la banque :
+    <span th:text="${banque.nom}"></span>
+  </h1>
   <br />
 
   <!-- <div th:replace="fragment/rscbox::rscbox" /> -->
   <div class="container mt-3">
-    <form class="row" method="post" th:action="@{/banques/search}"
-      th:object="${banques}">
+    <form class="row" method="post" th:action="@{/comptes/search}"
+      th:object=" ${comptes}">
       <div class="col">
         <label for="si" class="visually-hidden"></label>
-        <input type="text" class="form-control" id="si" th:name="nom"
-          placeholder="Saisissez le nom d'une banque">
+        <input type="text" class="form-control" id="si"
+          th:name="proprietaire"
+          placeholder="Saisissez le nom d'un proprietaire">
       </div>
       <div class="col-auto">
         <button type="submit" class="btn btn-primary mb-3">Rechercher</button>
@@ -32,39 +36,38 @@
     </form>
   </div>
 
-  Pour ajouter une nouvelle banque, cliquez ici :
-  <a class="btn btn-primary" th:href="@{/banques/save}">Nouvelle
-    Banque</a>
+  Pour ajouter un nouveau compte bancaire, cliquez ici :
+  <a class="btn btn-primary" th:href="@{/comptes/save}">Nouveau
+    Compte</a>
   <br />
   <br />
   <h3 align="center" style="background-color: rgb(0, 255, 128);">Liste
-    des banques</h3>
+    des comptes bancaires</h3>
 
   <table border="4" align="center" class="table table-dark">
     <tr>
-      <th>ID Banque</th>
-      <th>Nom</th>
-      <th>Capital</th>
-      <th>Adresse</th>
-      <th>Comptes</th>
+      <th>ID Compte</th>
+      <th>Propriétaire</th>
+      <th>Date Création</th>
+      <th>Solde</th>
+      <th>Type</th>
+      <th>Banque</th>
       <th>Supprimer</th>
       <th>Modifier</th>
     </tr>
-    <tr th:each="banque:${banques}">
-      <td th:text="${banque.id}"></td>
-      <td th:text="${banque.nom}"></td>
-      <td th:text="${banque.capital}"></td>
-      <td th:text="${banque.adresse}"></td>
+    <tr th:each="compte:${comptesBanque}">
+      <td th:text="${compte.id}"></td>
+      <td th:text="${compte.proprietaire}"></td>
+      <td th:text="${compte.dateCreation}"></td>
+      <td th:text="${compte.solde}"></td>
+      <td th:text="${compte.typeCompte}"></td>
+      <td th:text="${compte.banque.nom}"></td>
       <td>
-        <a th:href="@{/banques/comptes/{id}(id=${banque.id})}"
-          class="btn btn-info">Comptes</a>
-      </td>
-      <td>
-        <a th:href="@{/banques/delete/{id}(id=${banque.id})}"
+        <a th:href="@{/comptes/delete/{id}(id=${compte.id})}"
           class="btn btn-danger">Supprimer</a>
       </td>
       <td>
-        <a th:href="@{/banques/update/{id}(id=${banque.id})}"
+        <a th:href="@{/comptes/update/{id}(id=${compte.id})}"
           class="btn btn-warning">Modifier</a>
       </td>
     </tr>
