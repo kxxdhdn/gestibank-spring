@@ -37,7 +37,7 @@ public class MessageController {
   @PostMapping("/save")
   public String saveMessage(Message message) {
     message.setDateMessage(LocalDate.now());
-//		message.setEmailSender(message.getUser().getEmail());
+//    message.setEmailSender(message.getUser().getEmail());
     messageRepository.save(message); // save : insert
 
     return "redirect:list";
@@ -88,7 +88,7 @@ public class MessageController {
     model.addAttribute("messages", messages);
 
     return "message/listMessage";
-//		return "redirect:list";
+//    return "redirect:list";
   }
 
 }

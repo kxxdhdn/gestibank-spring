@@ -22,7 +22,7 @@ public class BanqueController {
   @GetMapping("/save")
   public String getFormAddBanque(Model model) {
     // Objet banque en dur
-//		Banque banque = new Banque("abc","paris",12000);
+//    Banque banque = new Banque("abc", "paris", 12000);
     Banque banque = new Banque();
     model.addAttribute("banque", banque);
 
@@ -30,11 +30,11 @@ public class BanqueController {
   }
 
   @PostMapping("/save")
-//	@ResponseBody
+//  @ResponseBody
   public String saveBanque(Banque banque) {
     banqueRepository.save(banque); // save : insert
 
-//		 return res.toString();
+//    return res.toString();
     return "redirect:list";
   }
 
@@ -44,17 +44,17 @@ public class BanqueController {
     List<Banque> banques = (List<Banque>) banqueRepository.findAll(); // select *
     model.addAttribute("banques", banques);
 
-//		 return banques.toString();
+//    return banques.toString();
     return "banque/listBanque";
   }
 
   @GetMapping("/delete/{id}")
-//	 @ResponseBody
+//  @ResponseBody
   public String deleteBanque(@PathVariable("id") int id) {
     banqueRepository.deleteById(id); // delete
-//		 List<Banque> banques = (List<Banque>) banqueRepository.findAll();
+//    List<Banque> banques = (List<Banque>) banqueRepository.findAll();
 
-//		 return banques.toString();
+//    return banques.toString();
     return "redirect:../list";
   }
 
@@ -69,7 +69,7 @@ public class BanqueController {
   }
 
   @PostMapping("/update")
-//	 @ResponseBody
+//  @ResponseBody
   public String updateBanque(Banque banque) {
     banqueRepository.save(banque); // save : insert
 
@@ -77,20 +77,20 @@ public class BanqueController {
   }
 
   @PostMapping("/search")
-//	@GetMapping("/search")
+//  @GetMapping("/search")
   public String getFormSearchBanque(Model model,
       @RequestParam(value = "nom") String nom) {
     List<Banque> banques = banqueRepository.findByNom(nom);
     model.addAttribute("banques", banques);
 
     return "banque/listBanque";
-//		return "redirect:list";
+//    return "redirect:list";
   }
 
   @GetMapping("/comptes/{id}")
   public String comptesBanque(Model model, @PathVariable("id") int id) {
     Optional<Banque> opBanque = banqueRepository.findById(id);
-//		Banque banque = opBanque.get();
+//    Banque banque = opBanque.get();
     Banque banque = opBanque.orElseThrow(); // use orElseThrow to handle a possible absence
     model.addAttribute("banque", banque);
 

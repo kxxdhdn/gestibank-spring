@@ -20,10 +20,10 @@ public class UserService {
   RoleRepository roleRepository;
 
   public User saveUser(User user) {
-    // Role userRole1 = roleRepository.findByLibelle("ADMIN");
-    // Role userRole2 = roleRepository.findByLibelle("SUPERADMIN");
+//    Role userRole1 = roleRepository.findByLibelle("ADMIN");
+//    Role userRole2 = roleRepository.findByLibelle("SUPERADMIN");
     Role userRole = roleRepository.findByLibelle("CLIENT");
-    // User temp = userRepository.findById(102).get();
+//    User temp = userRepository.findById(102).get();
     user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
 
     return userRepository.save(user);

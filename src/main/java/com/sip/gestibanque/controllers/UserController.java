@@ -31,7 +31,7 @@ public class UserController {
 
   @PostMapping("/save")
   public String saveUser(User user) {
-//		userRepository.save(user);
+//    userRepository.save(user);
     this.userService.saveUser(user);
 
     return "redirect:list";
@@ -63,7 +63,7 @@ public class UserController {
   }
 
   @PostMapping("/update")
-  // @ResponseBody
+//  @ResponseBody
   public String updateBanque(User user) {
     userRepository.save(user);
 
@@ -79,7 +79,7 @@ public class UserController {
     model.addAttribute("users", users);
 
     return "user/listUser";
-//		return "redirect:list";
+//    return "redirect:list";
   }
 
 }

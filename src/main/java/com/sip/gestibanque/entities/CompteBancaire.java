@@ -19,7 +19,7 @@ public class CompteBancaire {
   private LocalDate dateCreation;
   private String typeCompte; // Epargne | Courant
   private double solde;
-//	private int idBanque;
+//  private int idBanque;
 
   public int getId() {
     return id;
@@ -61,13 +61,13 @@ public class CompteBancaire {
     this.solde = solde;
   }
 
-//	public int getIdBanque() {
-//		return idBanque;
-//	}
+//  public int getIdBanque() {
+//    return idBanque;
+//  }
 //
-//	public void setIdBanque(int idBanque) {
-//		this.idBanque = idBanque;
-//	}
+//  public void setIdBanque(int idBanque) {
+//    this.idBanque = idBanque;
+//  }
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "id_banque", nullable = false)

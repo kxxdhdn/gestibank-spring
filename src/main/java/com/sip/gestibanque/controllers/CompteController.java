@@ -20,7 +20,7 @@ public class CompteController {
   private final CompteRepository compteRepository;
   private final BanqueRepository banqueRepository;
 
-//	@Autowired
+//  @Autowired
   public CompteController(CompteRepository compteRepository,
       BanqueRepository banqueRepository) {
     this.compteRepository = compteRepository;
@@ -66,7 +66,7 @@ public class CompteController {
   public String getFormUpdateCompte(@PathVariable("id") int id,
       Model model) {
     Optional<CompteBancaire> opCompte = compteRepository.findById(id);
-//		CompteBancaire cb = opCompte.get(); // compte qui est rempli depuis la base
+//    CompteBancaire cb = opCompte.get(); // compte qui est rempli depuis la base
     CompteBancaire cb = opCompte.orElseThrow(); // use orElseThrow to handle a possible absence
     model.addAttribute("compte", cb);
 
@@ -93,7 +93,7 @@ public class CompteController {
     model.addAttribute("comptes", cbs);
 
     return "compte/listCompte";
-//		return "redirect:list";
+//    return "redirect:list";
   }
 
 }

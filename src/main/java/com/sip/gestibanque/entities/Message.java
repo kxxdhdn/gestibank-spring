@@ -16,7 +16,7 @@ public class Message {
   private String sujet;
   private String description;
   private LocalDate dateMessage;
-//	private String emailSender;
+//  private String emailSender;
 
   public int getId() {
     return id;
@@ -50,13 +50,13 @@ public class Message {
     this.dateMessage = dateMessage;
   }
 
-//	public String getEmailSender() {
-//		return emailSender;
-//	}
+//  public String getEmailSender() {
+//    return emailSender;
+//  }
 //
-//	public void setEmailSender(String emailSender) {
-//		this.emailSender = emailSender;
-//	}
+//  public void setEmailSender(String emailSender) {
+//    this.emailSender = emailSender;
+//  }
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "id_user", nullable = false)

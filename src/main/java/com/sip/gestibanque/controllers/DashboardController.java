@@ -3,6 +3,7 @@ package com.sip.gestibanque.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sip.gestibanque.repositories.BanqueRepository;
@@ -23,14 +24,16 @@ public class DashboardController {
   @Autowired
   UserRepository userRepository;
 
-//	public DashboardController(UserRepository userRepository, BanqueRepository banqueRepository,
-//			CompteRepository compteRepository, MessageRepository messageRepository) {
-//		super();
-//		this.userRepository = userRepository;
-//		this.banqueRepository = banqueRepository;
-//		this.compteRepository = compteRepository;
-//		this.messageRepository = messageRepository;
-//	}
+//  public DashboardController(UserRepository userRepository,
+//      BanqueRepository banqueRepository,
+//      CompteRepository compteRepository,
+//      MessageRepository messageRepository) {
+//    super();
+//    this.userRepository = userRepository;
+//    this.banqueRepository = banqueRepository;
+//    this.compteRepository = compteRepository;
+//    this.messageRepository = messageRepository;
+//  }
 
   @RequestMapping(value = { "", "/", "/home" })
   public String home(Model model) {
@@ -46,7 +49,24 @@ public class DashboardController {
     model.addAttribute("numberOfUsers", nbreUsers);
 
     return "dashboard/home";
+  }
 
+  @GetMapping("/about")
+  public String about(Model model) {
+
+    return "dashboard/about";
+  }
+
+  @GetMapping("/team")
+  public String teamPage() {
+
+    return "dashboard/team";
+  }
+
+  @GetMapping("/contact")
+  public String contact() {
+
+    return "dashboard/contact";
   }
 
 }
