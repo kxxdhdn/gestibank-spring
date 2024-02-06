@@ -16,13 +16,16 @@
     <td th:text="${banque.capital}"></td>
     <td th:text="${banque.adresse}"></td>
     <td>
-      <a th:href="@{/banques/comptesBancaires/{id}(id=${banque.id})}" class="btn btn-info">Comptes Banque</a>
+      <a th:href="@{/banques/comptesBancaires/{id}(id=${banque.id})}"
+        class="btn btn-info">Comptes Banque</a>
     </td>
     <td>
-      <a th:href="@{/banques/delete/{id}(id=${banque.id})}" class="btn btn-danger">Supprimer</a>
+      <a th:href="@{/banques/delete/{id}(id=${banque.id})}"
+        class="btn btn-danger">Supprimer</a>
     </td>
     <td>
-      <a th:href="@{/banques/update/{id}(id=${banque.id})}" class="btn btn-warning">Modifier</a>
+      <a th:href="@{/banques/update/{id}(id=${banque.id})}"
+        class="btn btn-warning">Modifier</a>
     </td>
   </tr>
 

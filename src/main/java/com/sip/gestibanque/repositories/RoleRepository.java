@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 import com.sip.gestibanque.entities.Role;
 
 @Repository
-public interface RoleRepository extends CrudRepository<Role,Integer>{
-	
-	Role findByLibelle(String libelle);
+public interface RoleRepository extends CrudRepository<Role, Integer> {
+
+  Role findByLibelle(String libelle);
 
 }

@@ -17,10 +17,12 @@
     <td th:text="${compte.typeCompte}"></td>
     <td th:text="${compte.idBanque}"></td>
     <td>
-      <a th:href="@{/comptes/delete/{id}(id=${compte.id})}" class="btn btn-danger">Supprimer</a>
+      <a th:href="@{/comptes/delete/{id}(id=${compte.id})}"
+        class="btn btn-danger">Supprimer</a>
     </td>
     <td>
-      <a th:href="@{/comptes/update/{id}(id=${compte.id})}" class="btn btn-warning">Modifier</a>
+      <a th:href="@{/comptes/update/{id}(id=${compte.id})}"
+        class="btn btn-warning">Modifier</a>
     </td>
   </tr>
 

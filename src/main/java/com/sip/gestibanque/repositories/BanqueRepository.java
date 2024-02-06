@@ -8,11 +8,12 @@ import org.springframework.stereotype.Repository;
 import com.sip.gestibanque.entities.Banque;
 
 @Repository
-public interface BanqueRepository extends CrudRepository<Banque, Integer> {
+public interface BanqueRepository
+    extends CrudRepository<Banque, Integer> {
 
-	// Ici on hérite implicitement les 10 méthodes du crudRepository
-	// On peut également ajouter/enrichir ce repo par d'autres méthodes
+  // Ici on hérite implicitement les 10 méthodes du crudRepository
+  // On peut également ajouter/enrichir ce repo par d'autres méthodes
 
-	List<Banque> findByNom(String nom);
+  List<Banque> findByNom(String nom);
 
 }

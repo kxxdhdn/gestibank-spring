@@ -11,17 +11,17 @@ import com.sip.gestibanque.repositories.RoleRepository;
 @RequestMapping("/roles")
 public class RoleController {
 
-	@Autowired
-	RoleRepository roleRepository;
+  @Autowired
+  RoleRepository roleRepository;
 
-	@RequestMapping("/save")
-	@ResponseBody
-	public String addRoles() {
+  @RequestMapping("/save")
+  @ResponseBody
+  public String addRoles() {
 //		 Role role = roleRepository.save(new Role("SUPERADMIN"));
 //		 Role role = roleRepository.save(new Role("ADMIN"));
-		Role role = roleRepository.save(new Role("CLIENT"));
-		
-		return role.toString();
-	}
+    Role role = roleRepository.save(new Role("CLIENT"));
+
+    return role.toString();
+  }
 
 }

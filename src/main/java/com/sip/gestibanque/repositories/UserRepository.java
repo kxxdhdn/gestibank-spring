@@ -11,6 +11,6 @@ import com.sip.gestibanque.entities.User;
 public interface UserRepository extends CrudRepository<User, Integer> {
 
 //	@Query("FROM User u WHERE u.nom")
-	List<User> findByNomOrPrenom(String nom, String prenom);
+  List<User> findByNomOrPrenom(String nom, String prenom);
 
 }

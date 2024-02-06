@@ -9,7 +9,8 @@ import com.sip.gestibanque.entities.Message;
 import java.time.LocalDate;
 
 @Repository
-public interface MessageRepository extends CrudRepository<Message, Integer> {
+public interface MessageRepository
+    extends CrudRepository<Message, Integer> {
 
-	List<Message> findByDateMessage(LocalDate dateMessage);
+  List<Message> findByDateMessage(LocalDate dateMessage);
 }

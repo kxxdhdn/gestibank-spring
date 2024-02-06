@@ -14,14 +14,14 @@ import com.sip.gestibanque.repositories.UserRepository;
 //@RequestMapping("/dashboard")
 public class DashboardController {
 
-	@Autowired
-	BanqueRepository banqueRepository;
-	@Autowired
-	CompteRepository compteRepository;
-	@Autowired
-	MessageRepository messageRepository;
-	@Autowired
-	UserRepository userRepository;
+  @Autowired
+  BanqueRepository banqueRepository;
+  @Autowired
+  CompteRepository compteRepository;
+  @Autowired
+  MessageRepository messageRepository;
+  @Autowired
+  UserRepository userRepository;
 
 //	public DashboardController(UserRepository userRepository, BanqueRepository banqueRepository,
 //			CompteRepository compteRepository, MessageRepository messageRepository) {
@@ -32,21 +32,21 @@ public class DashboardController {
 //		this.messageRepository = messageRepository;
 //	}
 
-	@RequestMapping(value = { "", "/", "/home" })
-	public String home(Model model) {
+  @RequestMapping(value = { "", "/", "/home" })
+  public String home(Model model) {
 
-		long nbreBanques = banqueRepository.count();
-		long nbreComptes = compteRepository.count();
-		long nbreMessages = messageRepository.count();
-		long nbreUsers = userRepository.count();
+    long nbreBanques = banqueRepository.count();
+    long nbreComptes = compteRepository.count();
+    long nbreMessages = messageRepository.count();
+    long nbreUsers = userRepository.count();
 
-		model.addAttribute("numberOfBanques", nbreBanques);
-		model.addAttribute("numberOfComptes", nbreComptes);
-		model.addAttribute("numberOfMessages", nbreMessages);
-		model.addAttribute("numberOfUsers", nbreUsers);
+    model.addAttribute("numberOfBanques", nbreBanques);
+    model.addAttribute("numberOfComptes", nbreComptes);
+    model.addAttribute("numberOfMessages", nbreMessages);
+    model.addAttribute("numberOfUsers", nbreUsers);
 
-		return "dashboard/home";
+    return "dashboard/home";
 
-	}
+  }
 
 }

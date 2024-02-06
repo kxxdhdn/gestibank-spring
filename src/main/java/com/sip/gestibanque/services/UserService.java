@@ -14,19 +14,19 @@ import com.sip.gestibanque.repositories.UserRepository;
 @Service
 public class UserService {
 
-	@Autowired
-	UserRepository userRepository;
-	@Autowired
-	RoleRepository roleRepository;
+  @Autowired
+  UserRepository userRepository;
+  @Autowired
+  RoleRepository roleRepository;
 
-	public User saveUser(User user) {
-		// Role userRole1 = roleRepository.findByLibelle("ADMIN");
-		// Role userRole2 = roleRepository.findByLibelle("SUPERADMIN");
-		Role userRole = roleRepository.findByLibelle("CLIENT");
-		// User temp = userRepository.findById(102).get();
-		user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+  public User saveUser(User user) {
+    // Role userRole1 = roleRepository.findByLibelle("ADMIN");
+    // Role userRole2 = roleRepository.findByLibelle("SUPERADMIN");
+    Role userRole = roleRepository.findByLibelle("CLIENT");
+    // User temp = userRepository.findById(102).get();
+    user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
 
-		return userRepository.save(user);
-	}
+    return userRepository.save(user);
+  }
 
 }

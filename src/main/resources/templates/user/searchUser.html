@@ -19,10 +19,12 @@
     <td th:text="${user.adresse}"></td>
     <td th:text="${user.telephone}"></td>
     <td>
-      <a th:href="@{/users/delete/{id}(id=${user.id})}" class="btn btn-danger">Supprimer</a>
+      <a th:href="@{/users/delete/{id}(id=${user.id})}"
+        class="btn btn-danger">Supprimer</a>
     </td>
     <td>
-      <a th:href="@{/users/update/{id}(id=${user.id})}" class="btn btn-warning">Modifier</a>
+      <a th:href="@{/users/update/{id}(id=${user.id})}"
+        class="btn btn-warning">Modifier</a>
     </td>
   </tr>
 

@@ -18,73 +18,77 @@ import com.sip.gestibanque.repositories.UserRepository;
 @RequestMapping("/messages")
 public class MessageController {
 
-	@Autowired
-	MessageRepository messageRepository;
-	@Autowired
-	UserRepository userRepository;
+  @Autowired
+  MessageRepository messageRepository;
+  @Autowired
+  UserRepository userRepository;
 
-	@RequestMapping("/save")
-	public String getFormAddMessage(Model model) {
-		Message message = new Message();
-		model.addAttribute("message", message);
-		
-		List<User> users = (List<User>) this.userRepository.findAll();
-		model.addAttribute("users", users);
+  @RequestMapping("/save")
+  public String getFormAddMessage(Model model) {
+    Message message = new Message();
+    model.addAttribute("message", message);
 
-		return "message/addMessage";
-	}
+    List<User> users = (List<User>) this.userRepository.findAll();
+    model.addAttribute("users", users);
 
-	@PostMapping("/save")
-	public String saveMessage(Message message) {
-		message.setDateMessage(LocalDate.now());
+    return "message/addMessage";
+  }
+
+  @PostMapping("/save")
+  public String saveMessage(Message message) {
+    message.setDateMessage(LocalDate.now());
 //		message.setEmailSender(message.getUser().getEmail());
-		messageRepository.save(message); // save : insert
+    messageRepository.save(message); // save : insert
 
-		return "redirect:list";
-	}
+    return "redirect:list";
+  }
 
-	@RequestMapping("/list")
-	public String getAllMessages(Model model) {
-		List<Message> messages = (List<Message>) messageRepository.findAll(); // select *
-		model.addAttribute("messages", messages);
+  @RequestMapping("/list")
+  public String getAllMessages(Model model) {
+    List<Message> messages = (List<Message>) messageRepository
+        .findAll(); // select *
+    model.addAttribute("messages", messages);
 
-		return "message/listMessage";
-	}
+    return "message/listMessage";
+  }
 
-	@RequestMapping("/delete/{id}")
-	public String deleteMessage(@PathVariable("id") int id) {
-		messageRepository.deleteById(id); // delete
+  @RequestMapping("/delete/{id}")
+  public String deleteMessage(@PathVariable("id") int id) {
+    messageRepository.deleteById(id); // delete
 
-		return "redirect:../list";
-	}
+    return "redirect:../list";
+  }
 
-	@GetMapping("/update/{id}")
-	public String getFormUpdateMessage(@PathVariable("id") int id, Model model) {
-		Optional<Message> opMessage = messageRepository.findById(id);
-		Message message = opMessage.get(); // message qui est rempli depuis la base
-		model.addAttribute("message", message);
-		
-		List<User> users = (List<User>) this.userRepository.findAll();
-		model.addAttribute("users", users);
+  @GetMapping("/update/{id}")
+  public String getFormUpdateMessage(@PathVariable("id") int id,
+      Model model) {
+    Optional<Message> opMessage = messageRepository.findById(id);
+    Message message = opMessage.get(); // message qui est rempli depuis la base
+    model.addAttribute("message", message);
 
-		return "message/updateMessage";
-	}
+    List<User> users = (List<User>) this.userRepository.findAll();
+    model.addAttribute("users", users);
 
-	@PostMapping("/update")
-	public String updateMessage(Message message) {
-		messageRepository.save(message); // save : insert
+    return "message/updateMessage";
+  }
 
-		return "redirect:list";
-	}
-	
-	@PostMapping("/search")
-	public String getFormSearchMessage(Model model, @RequestParam(value = "dateMessage") LocalDate dateMessage) {
+  @PostMapping("/update")
+  public String updateMessage(Message message) {
+    messageRepository.save(message); // save : insert
 
-		List<Message> messages = messageRepository.findByDateMessage(dateMessage);
-		model.addAttribute("messages", messages);
+    return "redirect:list";
+  }
 
-		return "message/listMessage";
+  @PostMapping("/search")
+  public String getFormSearchMessage(Model model,
+      @RequestParam(value = "dateMessage") LocalDate dateMessage) {
+
+    List<Message> messages = messageRepository
+        .findByDateMessage(dateMessage);
+    model.addAttribute("messages", messages);
+
+    return "message/listMessage";
 //		return "redirect:list";
-	}
+  }
 
 }

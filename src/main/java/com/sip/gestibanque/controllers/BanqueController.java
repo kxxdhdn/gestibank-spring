@@ -16,86 +16,88 @@ import com.sip.gestibanque.repositories.BanqueRepository;
 @RequestMapping("/banques")
 public class BanqueController {
 
-	@Autowired // IoC (Inversion of Control) = Injection de dépendances
-	BanqueRepository banqueRepository;
+  @Autowired // IoC (Inversion of Control) = Injection de dépendances
+  BanqueRepository banqueRepository;
 
-	@GetMapping("/save")
-	public String getFormAddBanque(Model model) {
-		// Objet banque en dur
+  @GetMapping("/save")
+  public String getFormAddBanque(Model model) {
+    // Objet banque en dur
 //		Banque banque = new Banque("abc","paris",12000);
-		Banque banque = new Banque();
-		model.addAttribute("banque", banque);
+    Banque banque = new Banque();
+    model.addAttribute("banque", banque);
 
-		return "banque/addBanque";
-	}
+    return "banque/addBanque";
+  }
 
-	@PostMapping("/save")
+  @PostMapping("/save")
 //	@ResponseBody
-	public String saveBanque(Banque banque) {
-		banqueRepository.save(banque); // save : insert
+  public String saveBanque(Banque banque) {
+    banqueRepository.save(banque); // save : insert
 
 //		 return res.toString();
-		return "redirect:list";
-	}
+    return "redirect:list";
+  }
 
-	@RequestMapping("/list")
+  @RequestMapping("/list")
 //	 @ResponseBody
-	public String getAllBanques(Model model) {
-		List<Banque> banques = (List<Banque>) banqueRepository.findAll(); // select *
-		model.addAttribute("banques", banques);
+  public String getAllBanques(Model model) {
+    List<Banque> banques = (List<Banque>) banqueRepository.findAll(); // select *
+    model.addAttribute("banques", banques);
 
 //		 return banques.toString();
-		return "banque/listBanque";
-	}
+    return "banque/listBanque";
+  }
 
-	@GetMapping("/delete/{id}")
+  @GetMapping("/delete/{id}")
 //	 @ResponseBody
-	public String deleteBanque(@PathVariable("id") int id) {
-		banqueRepository.deleteById(id); // delete
+  public String deleteBanque(@PathVariable("id") int id) {
+    banqueRepository.deleteById(id); // delete
 //		 List<Banque> banques = (List<Banque>) banqueRepository.findAll();
 
 //		 return banques.toString();
-		return "redirect:../list";
-	}
+    return "redirect:../list";
+  }
 
-	@GetMapping("/update/{id}")
-	public String getFormUpdateBanque(@PathVariable("id") int id, Model model) {
-		Optional<Banque> opBanque = banqueRepository.findById(id);
-		Banque banque = opBanque.get(); // banque qui est remplie depuis la base
-		model.addAttribute("banque", banque);
+  @GetMapping("/update/{id}")
+  public String getFormUpdateBanque(@PathVariable("id") int id,
+      Model model) {
+    Optional<Banque> opBanque = banqueRepository.findById(id);
+    Banque banque = opBanque.get(); // banque qui est remplie depuis la base
+    model.addAttribute("banque", banque);
 
-		return "banque/updateBanque";
-	}
+    return "banque/updateBanque";
+  }
 
-	@PostMapping("/update")
+  @PostMapping("/update")
 //	 @ResponseBody
-	public String updateBanque(Banque banque) {
-		banqueRepository.save(banque); // save : insert
+  public String updateBanque(Banque banque) {
+    banqueRepository.save(banque); // save : insert
 
-		return "redirect:list";
-	}
+    return "redirect:list";
+  }
 
-	@PostMapping("/search")
+  @PostMapping("/search")
 //	@GetMapping("/search")
-	public String getFormSearchBanque(Model model, @RequestParam(value = "nom") String nom) {
-		List<Banque> banques = banqueRepository.findByNom(nom);
-		model.addAttribute("banques", banques);
+  public String getFormSearchBanque(Model model,
+      @RequestParam(value = "nom") String nom) {
+    List<Banque> banques = banqueRepository.findByNom(nom);
+    model.addAttribute("banques", banques);
 
-		return "banque/listBanque";
+    return "banque/listBanque";
 //		return "redirect:list";
-	}
+  }
 
-	@GetMapping("/comptes/{id}")
-	public String comptesBanque(Model model, @PathVariable("id") int id) {
-		Optional<Banque> opBanque = banqueRepository.findById(id);
+  @GetMapping("/comptes/{id}")
+  public String comptesBanque(Model model, @PathVariable("id") int id) {
+    Optional<Banque> opBanque = banqueRepository.findById(id);
 //		Banque banque = opBanque.get();
-		Banque banque = opBanque.orElseThrow(); // use orElseThrow to handle a possible absence
-		model.addAttribute("banque", banque);
+    Banque banque = opBanque.orElseThrow(); // use orElseThrow to handle a possible absence
+    model.addAttribute("banque", banque);
 
-		List<CompteBancaire> cbs = banque.getComptesBancaires();
-		model.addAttribute("comptesBanque", cbs);
+    List<CompteBancaire> cbs = banque.getComptesBancaires();
+    model.addAttribute("comptesBanque", cbs);
 
-		return "banque/comptesBanque";
-	}
+    return "banque/comptesBanque";
+  }
 
 }
