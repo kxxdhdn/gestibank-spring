@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import com.sip.gestibanque.entities.Banque;
 import com.sip.gestibanque.entities.CompteBancaire;
 import com.sip.gestibanque.repositories.BanqueRepository;
+import com.sip.gestibanque.services.BanqueService;
 
 @Controller
 @RequestMapping("/banques")
@@ -18,6 +19,8 @@ public class BanqueController {
 
   @Autowired // IoC (Inversion of Control) = Injection de dépendances
   BanqueRepository banqueRepository;
+  @Autowired
+  BanqueService banqueService;
 
   @GetMapping("/save")
   public String getFormAddBanque(Model model) {
@@ -33,6 +36,7 @@ public class BanqueController {
 //  @ResponseBody
   public String saveBanque(Banque banque) {
     banqueRepository.save(banque); // save : insert
+//    this.banqueService.saveBanque(banque);
 
 //    return res.toString();
     return "redirect:list";
@@ -41,7 +45,8 @@ public class BanqueController {
   @RequestMapping("/list")
 //	 @ResponseBody
   public String getAllBanques(Model model) {
-    List<Banque> banques = (List<Banque>) banqueRepository.findAll(); // select *
+//    List<Banque> banques = (List<Banque>) banqueRepository.findAll(); // select *
+    List<Banque> banques = this.banqueService.banques();
     model.addAttribute("banques", banques);
 
 //    return banques.toString();
@@ -52,8 +57,9 @@ public class BanqueController {
 //  @ResponseBody
   public String deleteBanque(@PathVariable("id") int id) {
     banqueRepository.deleteById(id); // delete
+//    this.banqueService.deleteBanque(id);
+    
 //    List<Banque> banques = (List<Banque>) banqueRepository.findAll();
-
 //    return banques.toString();
     return "redirect:../list";
   }
