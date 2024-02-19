@@ -1,0 +1,58 @@
+# Docker Compose
+version: '3.3'
+
+# Define services
+services:
+  # spring service
+  app:
+    image: kxxdhdn/gesticat:${VERSION}
+    ports:
+      - "8383:8081"
+    container_name: gesticat_cont
+    depends_on:
+      - db
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/gestibanquespring2024?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: teamcat
+      SPRING_DATASOURCE_PASSWORD: teamcat2024
+    networks:
+      - gesticat_net
+
+  # Database Service (Mysql)
+  db:
+    image: mysql:latest
+    container_name: gesticat_mysql
+    volumes:
+      - db_gestibanquespring2024_vol:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: gestibanquespring2024
+      MYSQL_USER: teamcat
+      MYSQL_PASSWORD: teamcat2024
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - gesticat_net
+
+  # phpmyadmin Service
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: gesticat_pmadmin
+    depends_on:
+      - db
+    restart: always
+    ports:
+      - 8382:80
+    environment:
+      - PMA_ARBITRARY=1
+    networks:
+      - gesticat_net
+
+# Dec
+volumes:
+  db_gestibanquespring2024_vol:
+
+networks:
+  gesticat_net:
+
+
